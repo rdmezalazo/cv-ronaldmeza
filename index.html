@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ronald Meza Lazo | Líder de Infraestructura TI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #2563eb;
+            --accent: #38bdf8;
+            --bg-dark: #020617;
+            --card-dark: #0f172a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-mesh {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.1) 0px, transparent 50%);
+        }
+
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 500px; /* Tamaño incrementado */
+        }
+
+        .profile-img-container::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 2.6rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+            background-size: 200% 200%;
+            z-index: -1;
+            filter: blur(15px);
+            animation: modern-glow 6s ease-in-out infinite;
+            will-change: transform, opacity, background-position;
+        }
+
+        @keyframes modern-glow {
+            0% {
+                background-position: 0% 50%;
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            50% {
+                background-position: 100% 50%;
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+            100% {
+                background-position: 0% 50%;
+                opacity: 0.4;
+                transform: scale(1);
+            }
+        }
+
+        .card-modern {
+            background: var(--card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-modern:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline-border {
+            border-left: 2px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+            transform: scale(1.02);
+        }
+
+        /* Animación de Carrusel Elegante */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 5)); }
+        }
+
+        .slider {
+            background: transparent;
+            height: 100px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .slider::before, .slider::after {
+            background: linear-gradient(to right, var(--bg-dark) 0%, rgba(2, 6, 23, 0) 100%);
+            content: "";
+            height: 100px;
+            position: absolute;
+            width: 200px;
+            z-index: 2;
+        }
+
+        .slider::after {
+            right: 0;
+            top: 0;
+            transform: rotateZ(180deg);
+        }
+
+        .slider::before {
+            left: 0;
+            top: 0;
+        }
+
+        .slide-track {
+            animation: scroll 40s linear infinite;
+            display: flex;
+            width: calc(250px * 10);
+        }
+
+        .slide {
+            height: 100px;
+            width: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+        /* Animación de Circuito Mainboard */
+        .circuit-bg {
+            position: relative;
+            overflow: hidden;
+            background-color: #020617; /* Base oscura */
+        }
+
+        .circuit-bg::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2338bdf8' stroke-width='1.5' stroke-opacity='0.15'%3E%3Cpath d='M20 20h20l20 20v20l20 20h20' /%3E%3Ccircle cx='20' cy='20' r='3' fill='%2338bdf8' fill-opacity='0.25' /%3E%3Ccircle cx='100' cy='80' r='3' fill='%2338bdf8' fill-opacity='0.25' /%3E%3Cpath d='M140 140h-20l-20-20v-20l-20-20h-20' /%3E%3Ccircle cx='140' cy='140' r='3' fill='%2338bdf8' fill-opacity='0.25' /%3E%3Ccircle cx='60' cy='80' r='3' fill='%2338bdf8' fill-opacity='0.25' /%3E%3Cpath d='M20 140h20l20-20V100l20-20h20' /%3E%3Ccircle cx='20' cy='140' r='3' fill='%232563eb' fill-opacity='0.3' /%3E%3Ccircle cx='100' cy='80' r='3' fill='%232563eb' fill-opacity='0.3' /%3E%3Cpath d='M140 20h-20l-20 20v20l-20 20h-20' /%3E%3Ccircle cx='140' cy='20' r='3' fill='%232563eb' fill-opacity='0.3' /%3E%3Ccircle cx='60' cy='80' r='3' fill='%232563eb' fill-opacity='0.3' /%3E%3C/g%3E%3C/svg%3E");
+            background-size: 160px 160px;
+            z-index: 0;
+            animation: data-flow 35s linear infinite;
+        }
+
+        .circuit-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(2, 6, 23, 0.8) 50%, #020617 90%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .circuit-bg > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes data-flow {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-160px) translateX(-160px); }
+        }
+    </style>
+</head>
+<body class="hero-mesh">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="logo.jpeg" alt="Ronald Meza Logo" class="h-10 w-auto rounded-lg shadow-lg">
+                <span class="text-xl font-bold tracking-tight text-white">Ronald Meza</span>
+            </div>
+            <div class="hidden md:flex space-x-10 text-sm font-medium text-slate-400 uppercase tracking-widest">
+                <a href="#inicio" class="hover:text-blue-400 transition-colors">Inicio</a>
+                <a href="#experiencia" class="hover:text-blue-400 transition-colors">Experiencia</a>
+                <a href="#formacion" class="hover:text-blue-400 transition-colors">Formación</a>
+                <a href="#habilidades" class="hover:text-blue-400 transition-colors">Stack</a>
+                <a href="#contacto" class="text-white border-b-2 border-blue-500 pb-1">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="min-h-screen flex items-center pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 items-center">
+            <!-- Columna Texto (6 de 12 para dar más espacio a la imagen) -->
+            <div class="md:col-span-6 lg:col-span-7">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-8 uppercase tracking-tighter">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    <span>Disponible para nuevos desafíos estratégicos</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-none text-gradient tracking-tighter">
+                    Infraestructura <br> & Liderazgo TI
+                </h1>
+                <p class="text-slate-400 text-lg md:text-xl mb-10 max-w-xl leading-relaxed">
+                    Ingeniero de Sistemas con más de 15 años de trayectoria garantizando la <span class="text-blue-400 font-semibold">continuidad operativa</span> y liderando la transformación digital en entornos críticos.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#experiencia" class="btn-primary px-10 py-4 rounded-2xl font-bold text-white flex items-center group">
+                        Ver Trayectoria
+                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                    <a href="mailto:rdmezalazo@gmail.com" class="bg-slate-800/50 backdrop-blur px-10 py-4 rounded-2xl font-bold border border-slate-700 hover:bg-slate-700 transition">
+                        Contáctame
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Columna Imagen (Aumentada y siempre visible) -->
+            <div class="md:col-span-6 lg:col-span-5 flex justify-center lg:justify-end">
+                <div class="profile-img-container">
+                    <img 
+                        src="perfil2.jpg" 
+                        alt="Ronald Meza Lazo" 
+                        class="w-full rounded-[2.5rem] shadow-2xl grayscale-[15%] hover:grayscale-0 transition-all duration-700 object-cover aspect-[4/5]"
+                    >
+                    <!-- Badge Flotante Mejorado -->
+                    <div class="absolute -bottom-4 -left-4 md:-bottom-8 md:-left-8 bg-slate-900/90 border border-slate-700 p-4 md:p-6 rounded-2xl shadow-2xl backdrop-blur-xl">
+                        <div class="flex items-center space-x-4">
+                            <div class="text-blue-500 text-2xl md:text-3xl">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] md:text-xs text-slate-500 uppercase font-bold tracking-tighter">Senior Expert</p>
+                                <p class="text-lg md:text-xl font-bold text-white leading-none">Full Stack & IT</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrusel de Confianza / Logos Elegante -->
+    <section class="py-20 border-y border-slate-800 bg-slate-900/20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-12">
+            <p class="text-center text-slate-500 text-xs font-bold uppercase tracking-[0.3em]">Trayectoria en instituciones de prestigio</p>
+        </div>
+        <div class="slider">
+            <div class="slide-track">
+                <!-- Logos Reales (Duplicados para el scroll infinito) -->
+                <div class="slide"><span class="text-2xl font-bold text-slate-300 opacity-60 hover:opacity-100 transition">LIVIGUI</span></div>
+                <div class="slide"><span class="text-2xl font-bold text-slate-300 opacity-60 hover:opacity-100 transition">SENATI</span></div>
+                <div class="slide"><span class="text-2xl font-bold text-slate-300 opacity-60 hover:opacity-100 transition">INSTITUTO DEL SUR</span></div>
+                <div class="slide"><span class="text-2xl font-bold text-slate-300 opacity-60 hover:opacity-100 transition">UGEL AREQUIPA</span></div>
+                <div class="slide"><span class="text-2xl font-bold text-slate-300 opacity-60 hover:opacity-100 transition">LORD BYRON</span></div>
+                <!-- Duplicados -->
+                <div class="slide"><span class="text-2xl font-bold text-slate-300 opacity-60 hover:opacity-100 transition">LIVIGUI</span></div>
+                <div class="slide"><span class="text-2xl font-bold text-slate-300 opacity-60 hover:opacity-100 transition">SENATI</span></div>
+                <div class="slide"><span class="text-2xl font-bold text-slate-300 opacity-60 hover:opacity-100 transition">INSTITUTO DEL SUR</span></div>
+                <div class="slide"><span class="text-2xl font-bold text-slate-300 opacity-60 hover:opacity-100 transition">UGEL AREQUIPA</span></div>
+                <div class="slide"><span class="text-2xl font-bold text-slate-300 opacity-60 hover:opacity-100 transition">LORD BYRON</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section id="experiencia" class="py-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-20">
+                <h2 class="text-4xl font-bold text-white mb-4">Experiencia Clave</h2>
+                <div class="h-1 w-20 bg-blue-600 rounded-full"></div>
+            </div>
+
+            <div class="space-y-16">
+                <!-- Puesto 1 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-blue-600 rounded-full border-4 border-slate-950 group-hover:scale-125 transition-transform"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Jefe de Tecnologías de la Información</h3>
+                        <span class="text-blue-400 font-mono text-sm bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">2023 — ACTUALIDAD</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">LIVIGUI</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Gestión estratégica de la infraestructura tecnológica. Aseguro la continuidad del negocio mediante la administración avanzada de redes (LAN/WAN) y servicios Cloud (AWS/Azure).
+                    </p>
+                </div>
+
+                <!-- Puesto 2 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Coordinador de Escuela TI (ETI)</h3>
+                        <span class="text-slate-400 font-mono text-sm">2022 — 2023</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">SENATI</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Liderazgo operativo y académico. Supervisión de equipos de alto rendimiento y actualización de mallas curriculares tecnológicas.
+                    </p>
+                </div>
+
+                <!-- Puesto 3 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Coordinador de TI</h3>
+                        <span class="text-slate-400 font-mono text-sm">2021 — 2021</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">Instituto del Sur</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Como Coordinador Académico de la carrera de Desarrollo de Sistemas de Información, lideré procesos clave de planificación, mejora curricular e innovación educativa.
+                    </p>
+                </div>
+
+                <!-- Puesto 4 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Docente de Informática y Robótica - Soporte Técnico</h3>
+                        <span class="text-slate-400 font-mono text-sm">2020 — 2020</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">Colegio Nuestra señora de la Merced</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Combiné funciones pedagógicas con soporte tecnológico institucional, aportando a la continuidad educativa y operativa en un contexto híbrido presencial-virtual.
+                    </p>
+                </div>
+
+                <!-- Puesto 5 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Programador de Sistemas PAD I</h3>
+                        <span class="text-slate-400 font-mono text-sm">2019 — 2020</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">UGEL Arequipa Sur</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Desempeñé funciones técnicas, administrativas e informáticas, orientadas a la optimización de procesos institucionales mediante herramientas digitales, gestión de personal y control de plazas presupuestadas.
+                    </p>
+                </div>
+
+                <!-- Puesto 6 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Ingeniero Full Stack</h3>
+                        <span class="text-slate-400 font-mono text-sm">2019 — 2019</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">Styla Peru</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Participé en el diseño y desarrollo de un Market Place especializado en productos y servicios para la decoración de interiores, conectando usuarios con especialistas.
+                    </p>
+                </div>
+
+                <!-- Puesto 7 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Desarrollador de TI</h3>
+                        <span class="text-slate-400 font-mono text-sm">2018 — 2019</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">CESMED LATINOAMERICANO</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Lideré el desarrollo de un sistema integral orientado a optimizar la gestión operativa de una clínica privada, incluyendo funcionalidades administrativas, financieras y clínicas.
+                    </p>
+                </div>
+
+                <!-- Puesto 8 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Desarrollador Front End / Back End (TI)</h3>
+                        <span class="text-slate-400 font-mono text-sm">2016 — 2018</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">EDDAS</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Trabajé como desarrollador de soluciones tecnológicas personalizadas para diversos clientes, participando en proyectos web y móviles, con enfoque en desarrollo full stack, infraestructura y soporte.
+                    </p>
+                </div>
+
+                <!-- Puesto 9 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Desarrollador y Analista (TI)</h3>
+                        <span class="text-slate-400 font-mono text-sm">2015 — 2018</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">REDIL EIRL</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Desarrollé una solución tecnológica orientada a la gestión de cobranzas y supervisé la infraestructura informática de la empresa, asegurando un entorno tecnológico eficiente, seguro y escalable.
+                    </p>
+                </div>
+
+                <!-- Puesto 10 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Docente de Informática</h3>
+                        <span class="text-slate-400 font-mono text-sm">2011 — 2014</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">Colegio Lord Byron</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Brindé formación tecnológica integral a estudiantes de todos los niveles, así como soporte institucional en temas digitales, combinando innovación pedagógica y desarrollo de recursos.
+                    </p>
+                </div>
+
+                <!-- Puesto 11 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Docente de Informática - Soporte Técnico</h3>
+                        <span class="text-slate-400 font-mono text-sm">2008 — 2008</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">Colegio Mendel</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Brindé formación tecnológica integral a estudiantes de Primaria y Secundaria, incorporando herramientas educativas, software especializado y metodologías activas de enseñanza.
+                    </p>
+                </div>
+
+                <!-- Puesto 12 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Docente de Informática - Soporte Técnico</h3>
+                        <span class="text-slate-400 font-mono text-sm">2005 — 2007</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">Colegio Latinoamericano</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Desempeñé un rol integral como docente de tecnología educativa y responsable de los sistemas informáticos de la institución, contribuyendo a la digitalización administrativa.
+                    </p>
+                </div>
+
+                <!-- Puesto 13 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Docente de Lenguaje de Programación y Diseño Web</h3>
+                        <span class="text-slate-400 font-mono text-sm">2005 — 2005</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">Instituto de Informática de la UNSA</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Impartí formación especializada en tecnologías web y herramientas de diseño gráfico a estudiantes de nivel técnico y universitario.
+                    </p>
+                </div>
+
+                <!-- Puesto 14 -->
+                <div class="relative pl-12 timeline-border group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-slate-700 rounded-full border-4 border-slate-950 group-hover:bg-blue-600 transition-colors"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Diseñador Gráfico y Publicitario</h3>
+                        <span class="text-slate-400 font-mono text-sm">2004 — 2004</span>
+                    </div>
+                    <p class="text-blue-500 font-bold mb-4">Colegio de Ingenieros del Perú - CIP Arequipa</p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Desarrollé soluciones visuales y de comunicación institucional para fortalecer la imagen del Colegio, contribuyendo también con soporte técnico en infraestructura de red.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formación -->
+    <section id="formacion" class="py-32 px-6 bg-slate-900/20 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 text-center">
+                <h2 class="text-4xl font-bold text-white mb-4">Formación Académica</h2>
+                <div class="h-1 w-20 bg-emerald-600 rounded-full mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Educacion 1 -->
+                <div class="card-modern rounded-[2.5rem] overflow-hidden flex flex-col group border border-emerald-500/20 hover:border-emerald-500/50">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ingeniería de Sistemas" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-8 items-start">
+                        <div class="w-16 h-16 bg-[#0f172a] rounded-2xl flex items-center justify-center text-emerald-500 text-3xl mb-6 shadow-xl border border-white/5">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <span class="text-emerald-400 font-mono text-sm mb-4 bg-emerald-500/10 px-4 py-1 rounded-full border border-emerald-500/20">2011 — 2016</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Ingeniero de Sistemas</h3>
+                        <p class="text-slate-400 font-medium mb-4 text-lg">Universidad Alas Peruanas</p>
+                        <p class="text-slate-500 text-sm leading-relaxed mt-auto border-t border-slate-800 pt-4 w-full">
+                            Grado en trámite de Reconocimiento Resolución del Consejo Directivo Nº 0030-2024-SUNEDU-CD.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Educacion 2 -->
+                <div class="card-modern rounded-[2.5rem] overflow-hidden flex flex-col group border border-blue-500/20 hover:border-blue-500/50">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Licenciado en Educación" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-8 items-start">
+                        <div class="w-16 h-16 bg-[#0f172a] rounded-2xl flex items-center justify-center text-blue-500 text-3xl mb-6 shadow-xl border border-white/5">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <span class="text-blue-400 font-mono text-sm mb-4 bg-blue-500/10 px-4 py-1 rounded-full border border-blue-500/20">2009 — 2011</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Licenciado en Educación</h3>
+                        <p class="text-slate-400 font-medium mb-4 text-lg mt-auto w-full">Universidad Alas Peruanas</p>
+                    </div>
+                </div>
+
+                <!-- Educacion 3 -->
+                <div class="card-modern rounded-[2.5rem] overflow-hidden flex flex-col group border border-orange-500/20 hover:border-orange-500/50">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Técnico en Computación e Informática" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-8 items-start">
+                        <div class="w-16 h-16 bg-[#0f172a] rounded-2xl flex items-center justify-center text-orange-500 text-3xl mb-6 shadow-xl border border-white/5">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <span class="text-orange-400 font-mono text-sm mb-4 bg-orange-500/10 px-4 py-1 rounded-full border border-orange-500/20">2007 — 2009</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Técnico en Computación e Informática</h3>
+                        <p class="text-slate-400 font-medium mb-4 text-lg mt-auto w-full">Instituto Superior Pedro P. Díaz</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habilidades -->
+    <section id="habilidades" class="py-32 bg-slate-900/40 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24">
+                <h2 class="text-4xl font-bold text-white">Stack Tecnológico</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-lg text-balance">Dominio integral desde la arquitectura física hasta la implementación de software escalable.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Skill Set 1 -->
+                <div class="card-modern rounded-[2.5rem] overflow-hidden flex flex-col group">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="stack_infra.png" alt="Infraestructura" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-8">
+                        <div class="w-16 h-16 bg-[#0f172a] rounded-2xl flex items-center justify-center text-blue-500 text-3xl mb-6 shadow-xl border border-white/5">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-white mb-6">Infraestructura & Cloud</h3>
+                        <div class="space-y-4 mt-auto">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-400 font-medium">Microsoft 365 / Azure</span>
+                                <span class="text-blue-400">Avanzado</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-400 font-medium">AWS / Virtualización</span>
+                                <span class="text-blue-400">Senior</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Set 2 -->
+                <div class="card-modern rounded-[2.5rem] overflow-hidden flex flex-col group">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="stack_dev.png" alt="Desarrollo Full Stack" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-8">
+                        <div class="w-16 h-16 bg-[#0f172a] rounded-2xl flex items-center justify-center text-emerald-500 text-3xl mb-6 shadow-xl border border-white/5">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-white mb-6">Desarrollo Full Stack</h3>
+                        <div class="space-y-4 mt-auto">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-400 font-medium">Laravel / Vue.js</span>
+                                <span class="text-emerald-400">90%</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-400 font-medium">MySQL / PostgreSQL</span>
+                                <span class="text-emerald-400">95%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Set 3 -->
+                <div class="card-modern rounded-[2.5rem] overflow-hidden flex flex-col group">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="stack_mgmt.png" alt="Gestión y Estrategia" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-8">
+                        <div class="w-16 h-16 bg-[#0f172a] rounded-2xl flex items-center justify-center text-orange-500 text-3xl mb-6 shadow-xl border border-white/5">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-white mb-6">Gestión & Estrategia</h3>
+                        <div class="space-y-4 mt-auto">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-400 font-medium">Seguridad de la Info.</span>
+                                <span class="text-orange-400">Audit Ready</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-400 font-medium">Liderazgo de Equipos</span>
+                                <span class="text-orange-400">Seniorship</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Set 4 -->
+                <div class="card-modern rounded-[2.5rem] overflow-hidden flex flex-col group">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="stack_ai.png" alt="Inteligencia Artificial" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-8">
+                        <div class="w-16 h-16 bg-[#0f172a] rounded-2xl flex items-center justify-center text-purple-500 text-3xl mb-6 shadow-xl border border-white/5">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-white mb-6">Inteligencia Artificial</h3>
+                        <div class="space-y-4 mt-auto">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-400 font-medium">Consultor IA</span>
+                                <span class="text-purple-400">Especialista</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-slate-400 font-medium">Integración & Prompting</span>
+                                <span class="text-purple-400">Avanzado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contacto -->
+    <footer id="contacto" class="pt-32 pb-16 bg-[#020617] px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-gradient-to-br from-slate-900 to-blue-950 p-10 md:p-24 rounded-[3rem] border border-white/5 text-center circuit-bg shadow-2xl">
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tighter">Hablemos de tu próximo proyecto.</h2>
+                
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="mailto:rdmezalazo@gmail.com" class="flex items-center space-x-4 bg-white text-slate-950 px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-transform">
+                        <i class="fas fa-envelope"></i>
+                        <span>rdmezalazo@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ronald-meza-lazo-2791a155" target="_blank" class="flex items-center space-x-4 bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-transform">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+                
+                <div class="mt-16 flex justify-center items-center space-x-8 text-slate-500 font-bold text-sm">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Arequipa, Perú</span>
+                    </div>
+                    <a href="https://wa.me/51936012244" target="_blank" class="flex items-center space-x-2 hover:text-green-400 transition-colors cursor-pointer">
+                        <i class="fab fa-whatsapp text-lg"></i>
+                        <span>936012244</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-20 flex justify-center">
+                <img src="logo.jpeg" alt="Ronald Meza Logo" class="h-32 w-auto rounded-2xl opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 shadow-2xl">
+            </div>
+            <p class="mt-8 text-center text-slate-700 text-sm">&copy; 2026 Ronald Meza Lazo. Ingeniería & Infraestructura TI.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Efecto de aparición y ocultación interactiva
+        const observe = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.filter = 'blur(0)';
+                } else {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(30px)';
+                    entry.target.style.filter = 'blur(3px)';
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px' 
+        });
+
+        // Aplicar a las secciones
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observe.observe(section);
+        });
+
+        // Aplicar individualmente a cada experiencia para un efecto secuencial al explorar
+        document.querySelectorAll('.timeline-border').forEach((item) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.filter = 'blur(3px)';
+            item.style.transition = 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+            observe.observe(item);
+        });
+    </script>
+</body>
+</html>
