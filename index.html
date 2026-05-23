@@ -199,6 +199,32 @@
             0% { transform: translateY(0) translateX(0); }
             100% { transform: translateY(-160px) translateX(-160px); }
         }
+
+        /* Estilos para la Lista de Certificaciones Animada */
+        .cert-item-list {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--accent-color, #2563eb);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cert-item-list:hover {
+            background: rgba(15, 23, 42, 0.85);
+            border-color: rgba(255, 255, 255, 0.12);
+            border-left-width: 8px;
+            transform: translateX(12px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .cert-icon-container {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cert-item-list:hover .cert-icon-container {
+            transform: scale(1.1) rotate(5deg);
+            background-color: var(--accent-color, #2563eb);
+            color: #ffffff;
+        }
     </style>
 </head>
 <body class="hero-mesh">
@@ -214,6 +240,7 @@
                 <a href="#inicio" class="hover:text-blue-400 transition-colors">Inicio</a>
                 <a href="#experiencia" class="hover:text-blue-400 transition-colors">Experiencia</a>
                 <a href="#formacion" class="hover:text-blue-400 transition-colors">Formación</a>
+                <a href="#certificaciones" class="hover:text-blue-400 transition-colors">Certificaciones</a>
                 <a href="#habilidades" class="hover:text-blue-400 transition-colors">Stack</a>
                 <a href="#contacto" class="text-white border-b-2 border-blue-500 pb-1">Contacto</a>
             </div>
@@ -548,6 +575,315 @@
                         <span class="text-orange-400 font-mono text-sm mb-4 bg-orange-500/10 px-4 py-1 rounded-full border border-orange-500/20">2007 — 2009</span>
                         <h3 class="text-2xl font-bold text-white mb-2">Técnico en Computación e Informática</h3>
                         <p class="text-slate-400 font-medium mb-4 text-lg mt-auto w-full">Instituto Superior Pedro P. Díaz</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificaciones -->
+    <section id="certificaciones" class="py-32 px-6 bg-slate-900/10 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 text-center">
+                <h2 class="text-4xl font-bold text-white mb-4">Certificaciones y Acreditaciones</h2>
+                <div class="h-1 w-20 bg-blue-600 rounded-full mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col space-y-6 max-w-5xl mx-auto">
+                <!-- Tarjeta 1: Máster Universitario en Liderazgo y Gestión -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #2563eb;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-blue-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Máster Universitario en Liderazgo y Gestión
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">TECH Universidad Tecnológica</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-map-marker-alt mr-1.5 text-blue-500"></i> México
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+                            12 Meses
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">14/11/2023 - 15/11/2024</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Diplomado de Acreditación - Transformación Digital -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #2563eb;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-blue-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Diplomado de Acreditación - Transformación Digital
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">UMOV Academy</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-map-marker-alt mr-1.5 text-blue-500"></i> México
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+                            315 hrs - 12 Sem
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">11/02/2023 - 05/05/2024</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Certificado - ISO/ IEC 270001:2022 Implementador Líder -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #06b6d4;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-cyan-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Certificado - ISO/ IEC 270001:2022 Implementador Líder
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">PECB / IGP Innovacion Gestión Buenas Prácticas</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-map-marker-alt mr-1.5 text-cyan-500"></i> Perú
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">
+                            40 hrs
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">16/02/2023 - 16/03/2023</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Certificado - Analítica de Datos con Python -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #10b981;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-emerald-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Certificado - Analítica de Datos con Python
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">Fullstack Technology School</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-code mr-1.5 text-emerald-500"></i> Desarrollo
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                            24 hrs
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">26/02/2021 - 28/03/2021</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 5: Certificado - Proficiency in the Python Programming Language -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #10b981;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-emerald-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Certificado - Proficiency in the Python Programming Language
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">Python Institute</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-certificate mr-1.5 text-emerald-500"></i> Exam PCAP-31-03
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                            PCAP
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">11/08/2021</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 6: Certificado - AWS FOR DEVELOPERS -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #8b5cf6;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-violet-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Certificado - AWS FOR DEVELOPERS - Despliegue de Aplicaciones Escalables
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">Fullstack Technology School</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-cloud mr-1.5 text-violet-500"></i> AWS Cloud
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-violet-400 uppercase tracking-wider bg-violet-500/10 px-3 py-1 rounded-full border border-violet-500/20">
+                            24 hrs
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">02/05/2021 - 04/06/2021</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 7: Certificado - ITIL 4 Foundation IT Service Management 27001 -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #3b82f6;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-blue-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Certificado - ITIL 4 Foundation IT Service Management 27001
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">Certiprof Professional Knowledge</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-gears mr-1.5 text-blue-500"></i> Gestión TI
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+                            24 hrs
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">06/09/2024</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 8: Cisco Certified Network Associate -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #f97316;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-orange-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Certificado - Cisco Certified Network Associate (CCNA)
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">CISCO CERTIFIED CCNA Routing & Switching</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-circle mr-1.5 text-orange-500 text-[10px]"></i> Redes
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-orange-400 uppercase tracking-wider bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
+                            36 Meses
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">12/2021 - 12/2024</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 9: Cisco Certified Network Professional Security -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #f97316;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-orange-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Certificado - Cisco Certified Network Professional Security (CCNP)
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">CISCO CERTIFIED CCNP Security</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-circle mr-1.5 text-orange-500 text-[10px]"></i> Seguridad
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-orange-400 uppercase tracking-wider bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
+                            36 Meses
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">12/2022 - 12/2025</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 10: NSE 4 Network Security Professional -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #ef4444;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-red-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fas fa-shield"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Certificado - NSE 4 Network Security Professional
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">Fortinet</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-circle mr-1.5 text-red-500 text-[10px]"></i> Fortinet NSE
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-red-400 uppercase tracking-wider bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20">
+                            12 hrs
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">18/02/2019</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 11: Soluciones Fortinet -->
+                <div class="cert-item-list rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6" style="--accent-color: #ef4444;">
+                    <div class="flex items-center space-x-6">
+                        <div class="cert-icon-container w-14 h-14 bg-[#0f172a] rounded-xl flex items-center justify-center text-red-500 text-2xl shadow-lg border border-white/5 shrink-0">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight mb-1">
+                                Certificado - Soluciones Fortinet
+                            </h3>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-sm">
+                                <span class="font-semibold text-slate-300">Fortinet</span>
+                                <span class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-circle mr-1.5 text-red-500 text-[10px]"></i> Fortinet NSE
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t border-slate-800/60 md:border-t-0 pt-4 md:pt-0 shrink-0">
+                        <span class="text-xs font-bold text-red-400 uppercase tracking-wider bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20">
+                            3 hrs
+                        </span>
+                        <span class="font-mono text-xs text-slate-500 font-semibold">31/10/2024</span>
                     </div>
                 </div>
             </div>
