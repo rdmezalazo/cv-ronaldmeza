@@ -253,6 +253,63 @@
             background-color: var(--accent-color, #2563eb);
             color: #ffffff;
         }
+
+        /* ── Sección Proyectos ── */
+        .project-card {
+            background: var(--card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2563eb, #38bdf8);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .project-card:hover {
+            border-color: rgba(37, 99, 235, 0.35);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
+                        0 0 30px -10px rgba(37, 99, 235, 0.2);
+        }
+        .project-card:hover::before { opacity: 1; }
+
+        .skeleton-proj {
+            background: linear-gradient(90deg, var(--card-dark) 25%, #1e293b 50%, var(--card-dark) 75%);
+            background-size: 200% 100%;
+            animation: shimmer-proj 1.5s infinite;
+            border-radius: 1.5rem;
+            height: 16rem;
+        }
+        @keyframes shimmer-proj {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .proj-skill-pill {
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #93c5fd;
+        }
+
+        .lang-dot {
+            display: inline-block;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
     </style>
 </head>
 
@@ -271,6 +328,7 @@
                 <a href="#formacion" class="hover:text-blue-400 transition-colors">Formación</a>
                 <a href="#certificaciones" class="hover:text-blue-400 transition-colors">Certificaciones</a>
                 <a href="#habilidades" class="hover:text-blue-400 transition-colors">Stack</a>
+                <a href="#proyectos" class="hover:text-blue-400 transition-colors">Proyectos</a>
                 <a href="#contacto" class="text-white border-b-2 border-blue-500 pb-1">Contacto</a>
             </div>
         </div>
@@ -1176,6 +1234,36 @@
         </div>
     </section>
 
+    <!-- Proyectos -->
+    <section id="proyectos" class="py-32 px-6 bg-slate-900/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-6">
+                <h2 class="text-4xl font-bold text-white mb-4">Proyectos</h2>
+                <div class="h-1 w-20 bg-blue-600 rounded-full"></div>
+            </div>
+            <p class="text-slate-500 mb-12 text-sm">
+                Repositorios públicos cargados dinámicamente desde GitHub.
+                <span class="text-slate-600 italic">Se actualiza automáticamente al agregar o quitar repositorios.</span>
+            </p>
+
+            <!-- Grid de Proyectos -->
+            <div id="projects-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="skeleton-proj"></div>
+                <div class="skeleton-proj"></div>
+                <div class="skeleton-proj"></div>
+            </div>
+
+            <!-- Estado de error -->
+            <div id="projects-error" class="hidden text-center py-16">
+                <i class="fas fa-exclamation-triangle text-4xl text-amber-500 mb-4"></i>
+                <p class="text-slate-400 mb-4">No se pudieron cargar los repositorios.</p>
+                <button onclick="loadRepos()" class="text-blue-400 hover:text-blue-300 font-medium text-sm">
+                    <i class="fas fa-redo mr-1"></i> Reintentar
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer / Contacto -->
     <footer id="contacto" class="pt-32 pb-16 bg-[#020617] px-6">
         <div class="max-w-7xl mx-auto">
@@ -1218,6 +1306,118 @@
                 Infraestructura TI.</p>
         </div>
     </footer>
+
+    <script>
+        // =========================================================
+        // PROYECTOS — Carga dinámica desde GitHub
+        // =========================================================
+        const GITHUB_USERNAME  = 'rdmezalazo';
+        const EXCLUDED_REPOS   = ['infosolutions', 'rdmezalazo', 'cv-ronaldmeza', 'portfolio'];
+
+        const LANG_COLORS = {
+            TypeScript: '#3178c6', JavaScript: '#f1e05a', HTML: '#e34c26',
+            CSS: '#563d7c', PHP: '#4F5D95', Python: '#3572A5',
+            Vue: '#41b883', Shell: '#89e051', Dockerfile: '#384d54',
+        };
+
+        const REPO_DESCRIPTIONS = {
+            'conformidadservicio': 'Sistema de gestión de conformidad de servicios con flujos de aprobación digital.',
+            'sistema-cesmed':      'Sistema integral para la gestión operativa de clínica privada — administrativo, financiero y clínico.',
+            'sistema-workflow':    'Motor de flujos de trabajo (workflow engine) para automatización de procesos empresariales.',
+            'sistemadentaltovar':  'Sistema de gestión para consultorio dental — citas, historiales clínicos y facturación.',
+            'ticketdesklocal':     'Sistema de mesa de ayuda (helpdesk) para la gestión de tickets de soporte técnico interno.',
+        };
+
+        async function loadRepos() {
+            const grid  = document.getElementById('projects-grid');
+            const error = document.getElementById('projects-error');
+            grid.innerHTML = '<div class="skeleton-proj"></div><div class="skeleton-proj"></div><div class="skeleton-proj"></div>';
+            error.classList.add('hidden');
+
+            try {
+                const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`);
+                if (!res.ok) throw new Error(res.statusText);
+                const repos = await res.json();
+
+                const filtered = repos
+                    .filter(r => !r.fork && !EXCLUDED_REPOS.includes(r.name))
+                    .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = `
+                        <div class="sm:col-span-2 lg:col-span-3 text-center py-16">
+                            <i class="fas fa-folder-open text-4xl text-slate-700 mb-4"></i>
+                            <p class="text-slate-500">No hay proyectos públicos disponibles por el momento.</p>
+                        </div>`;
+                    return;
+                }
+
+                grid.innerHTML = filtered.map(repo => {
+                    const lang   = repo.language || 'N/A';
+                    const color  = LANG_COLORS[lang] || '#6b7280';
+                    const desc   = repo.description || REPO_DESCRIPTIONS[repo.name] || 'Sin descripción disponible.';
+                    const updated = timeAgo(new Date(repo.updated_at));
+                    const name   = formatRepoName(repo.name);
+                    const topics = (repo.topics || []).slice(0, 3);
+
+                    return `
+                    <a href="${repo.html_url}" target="_blank" rel="noopener" class="project-card p-6 group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500/20 transition">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <i class="fas fa-arrow-up-right-from-square text-slate-700 group-hover:text-blue-400 transition text-sm"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-lg mb-2 group-hover:text-blue-300 transition">${name}</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed flex-1 mb-4" style="display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">${desc}</p>
+                        ${topics.length ? `
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            ${topics.map(t => `<span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 border border-slate-700/50">${t}</span>`).join('')}
+                        </div>` : ''}
+                        <div class="flex items-center gap-4 text-xs text-slate-600 mt-auto pt-4 border-t border-slate-800/50">
+                            ${lang !== 'N/A' ? `
+                            <span class="flex items-center">
+                                <span class="lang-dot" style="background:${color}"></span>${lang}
+                            </span>` : ''}
+                            <span class="flex items-center gap-1"><i class="far fa-star"></i> ${repo.stargazers_count}</span>
+                            <span class="flex items-center gap-1"><i class="fas fa-code-fork"></i> ${repo.forks_count}</span>
+                            <span class="ml-auto text-slate-700">${updated}</span>
+                        </div>
+                    </a>`;
+                }).join('');
+
+            } catch (e) {
+                console.error('Error loading repos:', e);
+                grid.innerHTML = '';
+                error.classList.remove('hidden');
+            }
+        }
+
+        function formatRepoName(name) {
+            return name.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        }
+
+        function timeAgo(date) {
+            const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+            const intervals = [
+                { label: 'año',  seconds: 31536000 },
+                { label: 'mes',  seconds: 2592000  },
+                { label: 'sem',  seconds: 604800   },
+                { label: 'día',  seconds: 86400    },
+                { label: 'hr',   seconds: 3600     },
+                { label: 'min',  seconds: 60       },
+            ];
+            for (const i of intervals) {
+                const count = Math.floor(seconds / i.seconds);
+                if (count >= 1)
+                    return `hace ${count} ${i.label}${count > 1 && !i.label.endsWith('s') ? (i.label === 'mes' ? 'es' : 's') : ''}`;
+            }
+            return 'justo ahora';
+        }
+
+        // Inicializar carga de repos
+        loadRepos();
+    </script>
 
     <script>
         // Efecto de aparición y ocultación interactiva
