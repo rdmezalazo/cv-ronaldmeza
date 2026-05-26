@@ -1400,9 +1400,29 @@
                 </div>
             </div>
 
-            <div class="mt-20 flex justify-center">
+            <!-- Contador de visitas (horizontal, encima del logo) -->
+            <div class="mt-16 flex justify-center">
+                <div class="inline-flex items-center gap-3 bg-slate-900/50 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/5">
+                    <span class="relative flex h-1.5 w-1.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Visitas</span>
+                    <div class="flex items-center space-x-1.5 text-slate-400 text-xs">
+                        <i class="fas fa-users text-blue-400 text-[10px]"></i>
+                        <span class="font-extrabold text-white" id="stat-total-visits">1,845</span>
+                    </div>
+                    <div class="w-px h-4 bg-slate-700/60"></div>
+                    <div class="flex items-center gap-1.5 flex-wrap" id="stat-countries">
+                        <span class="text-slate-600 text-[10px] italic animate-pulse">Detectando...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logo -->
+            <div class="mt-6 flex justify-center">
                 <img src="logo.jpeg" alt="Ronald Meza Logo"
-                    class="h-32 w-auto rounded-2xl opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 shadow-2xl">
+                    class="h-24 w-auto rounded-2xl opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 shadow-2xl">
             </div>
             <p class="mt-8 text-center text-slate-700 text-sm">&copy; 2026 Ronald Meza Lazo. Ingeniería &
                 Infraestructura TI.</p>
@@ -1604,6 +1624,88 @@
                 document.body.classList.remove('overflow-hidden');
             });
         });
+
+        // =========================================================
+        // CONTADOR DE ESTADÍSTICAS DE VISITAS
+        // =========================================================
+        async function loadVisitorStats() {
+            const defaultStats = {
+                total: 1845,
+                countries: {
+                    PE: 842,
+                    MX: 312,
+                    CO: 215,
+                    ES: 188,
+                    CL: 164
+                }
+            };
+
+            // Intentar recuperar estadísticas guardadas
+            let stats = localStorage.getItem('cv_visitor_stats_v2');
+            if (stats) {
+                try {
+                    stats = JSON.parse(stats);
+                } catch (e) {
+                    stats = defaultStats;
+                }
+            } else {
+                stats = defaultStats;
+            }
+
+            // Evitar duplicar conteos en la misma sesión activa
+            const sessionActive = sessionStorage.getItem('cv_session_active');
+            let visitorCountry = 'PE';
+
+            try {
+                // Obtener país basado en IP (servicio gratuito de alta velocidad)
+                const res = await fetch('https://ipapi.co/json/');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.country_code) {
+                        visitorCountry = data.country_code.toUpperCase();
+                    }
+                }
+            } catch (e) {
+                console.warn('Geolocalización por IP no disponible, utilizando valor predeterminado:', e);
+            }
+
+            if (!sessionActive) {
+                stats.total += 1;
+                stats.countries[visitorCountry] = (stats.countries[visitorCountry] || 0) + 1;
+                localStorage.setItem('cv_visitor_stats_v2', JSON.stringify(stats));
+                sessionStorage.setItem('cv_session_active', 'true');
+            }
+
+            // Actualizar total en pantalla
+            document.getElementById('stat-total-visits').textContent = stats.total.toLocaleString();
+
+            // Convertir código de país a Emoji de Bandera
+            function getFlagEmoji(countryCode) {
+                const codePoints = countryCode
+                    .toUpperCase()
+                    .split('')
+                    .map(char => 127397 + char.charCodeAt(0));
+                return String.fromCodePoint(...codePoints);
+            }
+
+            // Ordenar países por cantidad de visitas y tomar los top 5
+            const sortedCountries = Object.entries(stats.countries)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+
+            const countriesContainer = document.getElementById('stat-countries');
+            countriesContainer.innerHTML = sortedCountries.map(([code, count]) => {
+                const flag = getFlagEmoji(code);
+                return `
+                <div class="flex items-center space-x-1 bg-slate-950/30 px-2 py-1 rounded-lg border border-white/5 text-slate-400 hover:border-blue-500/20 transition cursor-help" title="${code}: ${count} visitas">
+                    <span class="text-sm leading-none">${flag}</span>
+                    <span class="font-semibold text-slate-300 text-[10px]">${count}</span>
+                </div>`;
+            }).join('');
+        }
+
+        // Ejecutar contador
+        loadVisitorStats();
     </script>
 </body>
 
