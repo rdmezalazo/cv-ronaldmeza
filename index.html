@@ -1328,6 +1328,19 @@
             'ticketdesklocal':     'Sistema de mesa de ayuda (helpdesk) para la gestión de tickets de soporte técnico interno.',
         };
 
+        // URLs de proyectos desplegados en Vercel
+        const DEPLOYED_URLS = {
+            'livscore':             'https://livscore.vercel.app',
+            'ticketdesklocal':      'https://ticketdesklocal.vercel.app',
+            'correosautorizados':   'https://correosautorizados.vercel.app',
+            'sistema-workflow':     'https://sistema-workflow.vercel.app',
+            'sistemadentaltovar':   'https://sistemadentaltovar.vercel.app',
+            'conformidadservicio':  'https://conformidadservicio.vercel.app',
+            'eppguardian':          'https://ticket-desk-ufzd.vercel.app',
+            'sistema-cesmed':       'https://sistema-cesmed.vercel.app',
+            'inventario-cya':       'https://inventario-cya.vercel.app',
+        };
+
         async function loadRepos() {
             const grid  = document.getElementById('projects-grid');
             const error = document.getElementById('projects-error');
@@ -1360,13 +1373,15 @@
                     const name   = formatRepoName(repo.name);
                     const topics = (repo.topics || []).slice(0, 3);
 
+                    const deployedUrl = DEPLOYED_URLS[repo.name] || null;
+
                     return `
-                    <a href="${repo.html_url}" target="_blank" rel="noopener" class="project-card p-6 group">
+                    <div class="project-card p-6 group">
                         <div class="flex items-start justify-between mb-4">
                             <div class="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500/20 transition">
                                 <i class="fas fa-code-branch"></i>
                             </div>
-                            <i class="fas fa-arrow-up-right-from-square text-slate-700 group-hover:text-blue-400 transition text-sm"></i>
+                            <span class="text-xs text-slate-600 font-mono">${updated}</span>
                         </div>
                         <h3 class="text-white font-bold text-lg mb-2 group-hover:text-blue-300 transition">${name}</h3>
                         <p class="text-slate-500 text-sm leading-relaxed flex-1 mb-4" style="display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">${desc}</p>
@@ -1374,16 +1389,26 @@
                         <div class="flex flex-wrap gap-1.5 mb-4">
                             ${topics.map(t => `<span class="text-[11px] px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 border border-slate-700/50">${t}</span>`).join('')}
                         </div>` : ''}
-                        <div class="flex items-center gap-4 text-xs text-slate-600 mt-auto pt-4 border-t border-slate-800/50">
+                        <div class="flex items-center gap-3 text-xs text-slate-600 pt-3 border-t border-slate-800/50 mb-4">
                             ${lang !== 'N/A' ? `
                             <span class="flex items-center">
                                 <span class="lang-dot" style="background:${color}"></span>${lang}
                             </span>` : ''}
                             <span class="flex items-center gap-1"><i class="far fa-star"></i> ${repo.stargazers_count}</span>
                             <span class="flex items-center gap-1"><i class="fas fa-code-fork"></i> ${repo.forks_count}</span>
-                            <span class="ml-auto text-slate-700">${updated}</span>
                         </div>
-                    </a>`;
+                        <div class="flex gap-2 mt-auto">
+                            <a href="${repo.html_url}" target="_blank" rel="noopener"
+                               class="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-all">
+                                <i class="fab fa-github"></i> Repositorio
+                            </a>
+                            ${deployedUrl ? `
+                            <a href="${deployedUrl}" target="_blank" rel="noopener"
+                               class="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-blue-600/20 hover:bg-blue-600/40 border border-blue-500/30 hover:border-blue-400/60 text-blue-300 hover:text-blue-200 text-xs font-semibold transition-all">
+                                <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                            </a>` : ''}
+                        </div>
+                    </div>`;
                 }).join('');
 
             } catch (e) {
