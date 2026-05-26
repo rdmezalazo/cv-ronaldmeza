@@ -265,22 +265,29 @@
             display: flex;
             flex-direction: column;
         }
+
         .project-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, #2563eb, #38bdf8);
             opacity: 0;
             transition: opacity 0.4s;
         }
+
         .project-card:hover {
             border-color: rgba(37, 99, 235, 0.35);
             transform: translateY(-8px);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
-                        0 0 30px -10px rgba(37, 99, 235, 0.2);
+                0 0 30px -10px rgba(37, 99, 235, 0.2);
         }
-        .project-card:hover::before { opacity: 1; }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
 
         .skeleton-proj {
             background: linear-gradient(90deg, var(--card-dark) 25%, #1e293b 50%, var(--card-dark) 75%);
@@ -289,9 +296,15 @@
             border-radius: 1.5rem;
             height: 16rem;
         }
+
         @keyframes shimmer-proj {
-            0%   { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         .proj-skill-pill {
@@ -306,7 +319,8 @@
 
         .lang-dot {
             display: inline-block;
-            width: 10px; height: 10px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             margin-right: 5px;
         }
@@ -460,8 +474,9 @@
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
                         <h3 class="text-2xl font-bold text-white">Jefe de Tecnologías de la Información</h3>
                         <span
-                            class="text-blue-400 font-mono text-sm bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">2023
-                            — ACTUALIDAD</span>
+                            class="text-blue-400 font-mono text-sm bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">Set
+                            2023
+                            — Abr 2026</span>
                     </div>
                     <p class="text-blue-500 font-bold mb-4">LIVIGUI</p>
                     <p class="text-slate-400 leading-relaxed max-w-3xl">
@@ -1248,7 +1263,8 @@
             </div>
             <p class="text-slate-500 mb-12 text-sm">
                 Repositorios públicos cargados dinámicamente desde GitHub.
-                <span class="text-slate-600 italic">Se actualiza automáticamente al agregar o quitar repositorios.</span>
+                <span class="text-slate-600 italic">Se actualiza automáticamente al agregar o quitar
+                    repositorios.</span>
             </p>
 
             <!-- Grid de Proyectos -->
@@ -1321,8 +1337,8 @@
         // =========================================================
         // PROYECTOS — Carga dinámica desde GitHub
         // =========================================================
-        const GITHUB_USERNAME  = 'rdmezalazo';
-        const EXCLUDED_REPOS   = ['infosolutions', 'rdmezalazo', 'cv-ronaldmeza', 'portfolio'];
+        const GITHUB_USERNAME = 'rdmezalazo';
+        const EXCLUDED_REPOS = ['infosolutions', 'rdmezalazo', 'cv-ronaldmeza', 'portfolio'];
 
         const LANG_COLORS = {
             TypeScript: '#3178c6', JavaScript: '#f1e05a', HTML: '#e34c26',
@@ -1332,27 +1348,27 @@
 
         const REPO_DESCRIPTIONS = {
             'conformidadservicio': 'Sistema de gestión de conformidad de servicios con flujos de aprobación digital.',
-            'sistema-cesmed':      'Sistema integral para la gestión operativa de clínica privada — administrativo, financiero y clínico.',
-            'sistema-workflow':    'Motor de flujos de trabajo (workflow engine) para automatización de procesos empresariales.',
-            'sistemadentaltovar':  'Sistema de gestión para consultorio dental — citas, historiales clínicos y facturación.',
-            'ticketdesklocal':     'Sistema de mesa de ayuda (helpdesk) para la gestión de tickets de soporte técnico interno.',
+            'sistema-cesmed': 'Sistema integral para la gestión operativa de clínica privada — administrativo, financiero y clínico.',
+            'sistema-workflow': 'Motor de flujos de trabajo (workflow engine) para automatización de procesos empresariales.',
+            'sistemadentaltovar': 'Sistema de gestión para consultorio dental — citas, historiales clínicos y facturación.',
+            'ticketdesklocal': 'Sistema de mesa de ayuda (helpdesk) para la gestión de tickets de soporte técnico interno.',
         };
 
         // URLs de proyectos desplegados en Vercel
         const DEPLOYED_URLS = {
-            'livscore':             'https://livscore.vercel.app',
-            'ticketdesklocal':      'https://ticketdesklocal.vercel.app',
-            'correosautorizados':   'https://correosautorizados.vercel.app',
-            'sistema-workflow':     'https://sistema-workflow.vercel.app',
-            'sistemadentaltovar':   'https://sistemadentaltovar.vercel.app',
-            'conformidadservicio':  'https://conformidadservicio.vercel.app',
-            'eppguardian':          'https://ticket-desk-ufzd.vercel.app',
-            'sistema-cesmed':       'https://sistema-cesmed.vercel.app',
-            'inventario-cya':       'https://inventario-cya.vercel.app',
+            'livscore': 'https://livscore.vercel.app',
+            'ticketdesklocal': 'https://ticketdesklocal.vercel.app',
+            'correosautorizados': 'https://correosautorizados.vercel.app',
+            'sistema-workflow': 'https://sistema-workflow.vercel.app',
+            'sistemadentaltovar': 'https://sistemadentaltovar.vercel.app',
+            'conformidadservicio': 'https://conformidadservicio.vercel.app',
+            'eppguardian': 'https://ticket-desk-ufzd.vercel.app',
+            'sistema-cesmed': 'https://sistema-cesmed.vercel.app',
+            'inventario-cya': 'https://inventario-cya.vercel.app',
         };
 
         async function loadRepos() {
-            const grid  = document.getElementById('projects-grid');
+            const grid = document.getElementById('projects-grid');
             const error = document.getElementById('projects-error');
             grid.innerHTML = '<div class="skeleton-proj"></div><div class="skeleton-proj"></div><div class="skeleton-proj"></div>';
             error.classList.add('hidden');
@@ -1376,11 +1392,11 @@
                 }
 
                 grid.innerHTML = filtered.map(repo => {
-                    const lang   = repo.language || 'N/A';
-                    const color  = LANG_COLORS[lang] || '#6b7280';
-                    const desc   = repo.description || REPO_DESCRIPTIONS[repo.name] || 'Sin descripción disponible.';
+                    const lang = repo.language || 'N/A';
+                    const color = LANG_COLORS[lang] || '#6b7280';
+                    const desc = repo.description || REPO_DESCRIPTIONS[repo.name] || 'Sin descripción disponible.';
                     const updated = timeAgo(new Date(repo.updated_at));
-                    const name   = formatRepoName(repo.name);
+                    const name = formatRepoName(repo.name);
                     const topics = (repo.topics || []).slice(0, 3);
 
                     const deployedUrl = DEPLOYED_URLS[repo.name] || null;
@@ -1435,12 +1451,12 @@
         function timeAgo(date) {
             const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
             const intervals = [
-                { label: 'año',  seconds: 31536000 },
-                { label: 'mes',  seconds: 2592000  },
-                { label: 'sem',  seconds: 604800   },
-                { label: 'día',  seconds: 86400    },
-                { label: 'hr',   seconds: 3600     },
-                { label: 'min',  seconds: 60       },
+                { label: 'año', seconds: 31536000 },
+                { label: 'mes', seconds: 2592000 },
+                { label: 'sem', seconds: 604800 },
+                { label: 'día', seconds: 86400 },
+                { label: 'hr', seconds: 3600 },
+                { label: 'min', seconds: 60 },
             ];
             for (const i of intervals) {
                 const count = Math.floor(seconds / i.seconds);
