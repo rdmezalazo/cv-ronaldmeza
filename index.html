@@ -254,6 +254,155 @@
             color: #ffffff;
         }
 
+        /* Miniatura de certificación - visible solo en hover */
+        .cert-thumbnail {
+            position: absolute;
+            right: -280px;
+            top: 50%;
+            transform: translateY(-50%) scale(0.8);
+            width: 240px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.8),
+                0 0 30px -10px rgba(56, 189, 248, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 50;
+            background: var(--card-dark);
+        }
+
+        .cert-item-list:hover .cert-thumbnail {
+            opacity: 1;
+            transform: translateY(-50%) scale(1);
+        }
+
+        @media (max-width: 1024px) {
+            .cert-item-list:hover .cert-thumbnail {
+                right: -10px;
+                width: 180px;
+                height: 127px;
+            }
+        }
+
+        /* Responsive para móviles - miniatura dentro de la tarjeta, alineada a la derecha */
+        @media (max-width: 768px) {
+            .cert-item-list {
+                position: relative;
+                overflow: visible;
+                min-height: 180px;
+            }
+
+            .cert-thumbnail {
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                bottom: auto;
+                left: auto;
+                transform: translateY(-50%) scale(0.8);
+                width: 120px;
+                height: 85px;
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 100;
+            }
+
+            .cert-item-list:hover .cert-thumbnail {
+                opacity: 1;
+                transform: translateY(-50%) scale(1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cert-thumbnail {
+                width: 100px;
+                height: 70px;
+                right: 8px;
+            }
+        }
+
+        /* Modal para visualización de certificaciones */
+        .cert-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 2rem;
+        }
+
+        .cert-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cert-modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            animation: modalZoomIn 0.3s ease;
+        }
+
+        .cert-modal-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 25px 80px -20px rgba(0, 0, 0, 0.9),
+                0 0 40px -10px rgba(56, 189, 248, 0.15);
+            border: 2px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .cert-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cert-modal-close:hover {
+            background: rgba(239, 68, 68, 1);
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        @keyframes modalZoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Hacer las miniaturas cliqueables */
+        .cert-thumbnail {
+            cursor: pointer;
+        }
+
         /* ── Sección Proyectos ── */
         .project-card {
             background: var(--card-dark);
@@ -329,10 +478,12 @@
         #menu-toggle.open #line1 {
             transform: rotate(45deg) translate(4px, 1.5px);
         }
+
         #menu-toggle.open #line2 {
             opacity: 0;
             transform: translateX(-10px);
         }
+
         #menu-toggle.open #line3 {
             transform: rotate(-45deg) translate(4px, -1.5px);
         }
@@ -351,11 +502,13 @@
             width: 100%;
             max-width: 280px;
         }
+
         @media (min-width: 640px) {
             .profile-img-container {
                 max-width: 380px;
             }
         }
+
         @media (min-width: 1024px) {
             .profile-img-container {
                 max-width: 480px;
@@ -367,14 +520,17 @@
                 padding-top: 4.5rem !important;
                 padding-bottom: 4.5rem !important;
             }
+
             #inicio {
                 padding-top: 7.5rem !important;
                 padding-bottom: 4.5rem !important;
             }
+
             section {
                 padding-left: 1.25rem !important;
                 padding-right: 1.25rem !important;
             }
+
             .timeline-border {
                 padding-left: 1.75rem !important;
             }
@@ -392,7 +548,8 @@
                 <span class="text-xl font-bold tracking-tight text-white">Ronald Meza</span>
             </div>
             <!-- Menú de escritorio -->
-            <div class="hidden md:flex space-x-10 text-sm font-medium text-slate-400 uppercase tracking-widest animate-fade-in">
+            <div
+                class="hidden md:flex space-x-10 text-sm font-medium text-slate-400 uppercase tracking-widest animate-fade-in">
                 <a href="#inicio" class="hover:text-blue-400 transition-colors">Inicio</a>
                 <a href="#experiencia" class="hover:text-blue-400 transition-colors">Experiencia</a>
                 <a href="#formacion" class="hover:text-blue-400 transition-colors">Formación</a>
@@ -402,11 +559,15 @@
                 <a href="#contacto" class="text-white border-b-2 border-blue-500 pb-1">Contacto</a>
             </div>
             <!-- Botón Hamburger para móvil -->
-            <button id="menu-toggle" class="md:hidden text-slate-400 hover:text-white focus:outline-none transition p-2 relative z-50" aria-label="Abrir menú">
+            <button id="menu-toggle"
+                class="md:hidden text-slate-400 hover:text-white focus:outline-none transition p-2 relative z-50"
+                aria-label="Abrir menú">
                 <div class="w-6 h-5 flex flex-col justify-between items-center relative">
-                    <span id="line1" class="w-6 h-0.5 bg-current rounded transition-all duration-300 origin-left"></span>
+                    <span id="line1"
+                        class="w-6 h-0.5 bg-current rounded transition-all duration-300 origin-left"></span>
                     <span id="line2" class="w-6 h-0.5 bg-current rounded transition-all duration-300"></span>
-                    <span id="line3" class="w-6 h-0.5 bg-current rounded transition-all duration-300 origin-left"></span>
+                    <span id="line3"
+                        class="w-6 h-0.5 bg-current rounded transition-all duration-300 origin-left"></span>
                 </div>
             </button>
         </div>
@@ -415,13 +576,20 @@
     <!-- Menú Móvil Moderno -->
     <div id="mobile-menu"
         class="fixed inset-0 z-40 bg-[#020617]/95 backdrop-blur-2xl flex flex-col justify-center items-center space-y-8 opacity-0 pointer-events-none transition-all duration-500 transform translate-y-10">
-        <a href="#inicio" class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Inicio</a>
-        <a href="#experiencia" class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Experiencia</a>
-        <a href="#formacion" class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Formación</a>
-        <a href="#certificaciones" class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Certificaciones</a>
-        <a href="#habilidades" class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Stack</a>
-        <a href="#portafolio" class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Portafolio</a>
-        <a href="#contacto" class="mobile-link text-2xl font-bold text-white bg-blue-600/20 px-8 py-3 rounded-2xl border border-blue-500/30 hover:bg-blue-600/40 transition-all uppercase tracking-widest">Contacto</a>
+        <a href="#inicio"
+            class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Inicio</a>
+        <a href="#experiencia"
+            class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Experiencia</a>
+        <a href="#formacion"
+            class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Formación</a>
+        <a href="#certificaciones"
+            class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Certificaciones</a>
+        <a href="#habilidades"
+            class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Stack</a>
+        <a href="#portafolio"
+            class="mobile-link text-2xl font-bold text-slate-300 hover:text-blue-400 transition-colors uppercase tracking-widest">Portafolio</a>
+        <a href="#contacto"
+            class="mobile-link text-2xl font-bold text-white bg-blue-600/20 px-8 py-3 rounded-2xl border border-blue-500/30 hover:bg-blue-600/40 transition-all uppercase tracking-widest">Contacto</a>
     </div>
 
     <!-- Hero Section -->
@@ -814,8 +982,7 @@
                 <div
                     class="card-modern rounded-[2.5rem] overflow-hidden flex flex-col group border border-blue-500/20 hover:border-blue-500/50">
                     <div class="h-40 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Licenciado en Educación"
+                        <img src="laboratorio-codificacion.jpg" alt="Licenciado en Educación"
                             class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
                     </div>
@@ -896,6 +1063,8 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">14/11/2023 - 15/11/2024</span>
                     </div>
+                    <img src="certificacion/Liderazgo Gestión.jpg" alt="Certificación Liderazgo Gestión"
+                        class="cert-thumbnail">
                 </div>
 
                 <!-- Tarjeta 2: Diplomado de Acreditación - Transformación Digital -->
@@ -927,6 +1096,8 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">11/02/2023 - 05/05/2024</span>
                     </div>
+                    <img src="certificacion/Transformacion Digital UMOV.jpg" alt="Certificación Transformación Digital"
+                        class="cert-thumbnail">
                 </div>
 
                 <!-- Tarjeta 3: Certificado - ISO/ IEC 270001:2022 Implementador Líder -->
@@ -959,6 +1130,7 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">16/02/2023 - 16/03/2023</span>
                     </div>
+                    <img src="certificacion/ISO 27001.jpg" alt="Certificación ISO 27001" class="cert-thumbnail">
                 </div>
 
                 <!-- Tarjeta 4: Certificado - Analítica de Datos con Python -->
@@ -990,6 +1162,8 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">26/02/2021 - 28/03/2021</span>
                     </div>
+                    <img src="certificacion/Analisis Datos Python.jpg" alt="Certificación Análisis de Datos Python"
+                        class="cert-thumbnail">
                 </div>
 
                 <!-- Tarjeta 5: Certificado - Proficiency in the Python Programming Language -->
@@ -1021,6 +1195,8 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">11/08/2021</span>
                     </div>
+                    <img src="certificacion/Proficiency Pyhthon.jpg" alt="Certificación Proficiency Python"
+                        class="cert-thumbnail">
                 </div>
 
                 <!-- Tarjeta 6: Certificado - AWS FOR DEVELOPERS -->
@@ -1052,6 +1228,7 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">02/05/2021 - 04/06/2021</span>
                     </div>
+                    <img src="certificacion/Aws Developer.jpg" alt="Certificación AWS Developer" class="cert-thumbnail">
                 </div>
 
                 <!-- Tarjeta 7: Certificado - ITIL 4 Foundation IT Service Management 27001 -->
@@ -1083,6 +1260,8 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">06/09/2024</span>
                     </div>
+                    <img src="certificacion/ITIL 4 Foundation.jpg" alt="Certificación ITIL 4 Foundation"
+                        class="cert-thumbnail">
                 </div>
 
                 <!-- Tarjeta 8: Cisco Certified Network Associate -->
@@ -1115,6 +1294,7 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">12/2021 - 12/2024</span>
                     </div>
+                    <img src="certificacion/CCNA.jpg" alt="Certificación CCNA" class="cert-thumbnail">
                 </div>
 
                 <!-- Tarjeta 9: Cisco Certified Network Professional Security -->
@@ -1146,6 +1326,7 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">12/2022 - 12/2025</span>
                     </div>
+                    <img src="certificacion/CCNP.jpg" alt="Certificación CCNP" class="cert-thumbnail">
                 </div>
 
                 <!-- Tarjeta 10: NSE 4 Network Security Professional -->
@@ -1177,6 +1358,8 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">18/02/2019</span>
                     </div>
+                    <img src="certificacion/Engiperu Fortinet.jpg" alt="Certificación Fortinet NSE 4"
+                        class="cert-thumbnail">
                 </div>
 
                 <!-- Tarjeta 11: Soluciones Fortinet -->
@@ -1208,6 +1391,7 @@
                         </span>
                         <span class="font-mono text-xs text-slate-500 font-semibold">31/10/2024</span>
                     </div>
+                    <img src="certificacion/Fortinet.jpg" alt="Certificación Fortinet" class="cert-thumbnail">
                 </div>
             </div>
         </div>
@@ -1361,6 +1545,17 @@
         </div>
     </section>
 
+    <!-- Modal para visualización de certificaciones -->
+    <div id="cert-modal" class="cert-modal" role="dialog" aria-modal="true"
+        aria-label="Vista ampliada de certificación">
+        <div class="cert-modal-content">
+            <button class="cert-modal-close" aria-label="Cerrar" onclick="closeCertModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="cert-modal-img" src="" alt="Certificación ampliada">
+        </div>
+    </div>
+
     <!-- Footer / Contacto -->
     <footer id="contacto" class="pt-32 pb-16 bg-[#020617] px-6">
         <div class="max-w-7xl mx-auto">
@@ -1402,9 +1597,11 @@
 
             <!-- Contador de visitas (horizontal, encima del logo) -->
             <div class="mt-16 flex justify-center">
-                <div class="inline-flex items-center gap-3 bg-slate-900/50 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/5">
+                <div
+                    class="inline-flex items-center gap-3 bg-slate-900/50 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/5">
                     <span class="relative flex h-1.5 w-1.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
                     </span>
                     <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Visitas</span>
@@ -1706,6 +1903,50 @@
 
         // Ejecutar contador
         loadVisitorStats();
+    </script>
+
+    <script>
+        // =========================================================
+        // MODAL PARA VISUALIZACIÓN DE CERTIFICACIONES
+        // =========================================================
+        const certModal = document.getElementById('cert-modal');
+        const certModalImg = document.getElementById('cert-modal-img');
+
+        // Función para abrir el modal
+        function openCertModal(imageSrc) {
+            certModalImg.src = imageSrc;
+            certModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Función para cerrar el modal
+        function closeCertModal() {
+            certModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Agregar eventos de clic a todas las miniaturas
+        document.querySelectorAll('.cert-thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                openCertModal(this.src);
+            });
+        });
+
+        // Cerrar modal al hacer clic fuera de la imagen
+        certModal.addEventListener('click', function (e) {
+            if (e.target === certModal) {
+                closeCertModal();
+            }
+        });
+
+        // Cerrar modal con la tecla Escape
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && certModal.classList.contains('active')) {
+                closeCertModal();
+            }
+        });
     </script>
 </body>
 
